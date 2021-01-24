@@ -12,19 +12,19 @@
 本気にしないでください。
 
 ###########【台入力データ】#######################
-# 大当たり確率
+#大当たり確率
 atariKakuritsu: int = 
-# ST中大当たり確率
+#ST中大当たり確率
 STatariKakuritsu: int = 
-# ST突入率
+#ST突入率
 STtotsunyuritsu: int = 
-# ST回数
+#ST回数
 STkaisu: int = 
 #時短回数
 jitanKaisu: int = 
-# 総回転数
+#総回転数
 kaitensuuSum: int = 
-# 1000円辺りの回転率
+#1000円辺りの回転率
 senenKaitensuu: int = 
 #大当たり一回辺りの出玉数
 ikaiOatariDedama: int = 
