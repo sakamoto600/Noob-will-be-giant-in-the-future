@@ -133,18 +133,20 @@ goukeiShushi: int = 0
 heikinShushi: int = 0
 ichinichiShushi: int = 0
 daily_count: int = 0
+max_saidaihamari: int = 0
 
 #日数分の収支データ(出玉計測 / 日 + 最大データ算出 + その日の当たり・確変回数のリセット)
 def pachinkoDailySimulation():
-    # 台データ変数をグローバル変数宣言
     global atariKakurits
-    global kakuhenTotsunyuritsu
-    global kakuhenKeizokuritsu
+    global STatariKakuritsu
+    global STkaisu
+    global STtotsunyuritsu
     global kaitensuuSum
+    global jitanKaisu
     global senenKaitensuu
     global ikaiOatariDedama
     global simulationDay
-    # データ収集用変数をグローバル変数宣言
+
     global hamariKaisu
     global saidaiHamari
     global renchanKaisu
@@ -164,9 +166,12 @@ def pachinkoDailySimulation():
     ##日数シミュレーションのグローバル変数宣言
     global saidaiKachigaku
     global saidaiMakegaku
+    global saidaiHamari
+    global max_saidaihamari
     global goukeiShushi
     global heikinShushi
     global ichinichiShushi
+    global max_saidaihamari
 
     #【決めた回転数分回す】入っているデータ：大当たり回数(確変突入 / 非突入含む)・確変回数
     for _ in range(1, kaitensuuSum):
@@ -185,25 +190,26 @@ def pachinkoDailySimulation():
         saidaiKachigaku = ichinichiShushi
     elif ichinichiShushi < 0 and saidaiMakegaku > ichinichiShushi:
         saidaiMakegaku = ichinichiShushi
+
     ##一日における各種(a: 総大当たり回数・b: 総確変回数・c: 最大大当たり回数・d: 最大確変数・e: 最大ハマり数）
     #総大当たり回数
     atariKaisuSum += atariKaisu
+
     #総確変回数
     kakuhenKaisuSum += kakuhenKaisu
+
     #最大大当たり回数
     if atariKaisu > saidaiAtariKaisu:
         saidaiAtariKaisu = atariKaisu
+
     #最大確変回数
     if kakuhenKaisu > saidaiKakuhenKaisu:
         saidaiKakuhenKaisu = kakuhenKaisu
-    ##出玉リセット(ハマり回数・確変突入回数・確変突入しなかった回数・初当たり回数・外れ回数・当たり回数・確変回数)
-    hamariKaisu = 0
-    kakuhenTotsunyuKaisu = 0
-    kakuhenNGKaisu = 0
-    hatsuatariKakuritsu = 0
-    hazureKaisu = 0
-    atariKaisu = 0
-    kakuhenKaisu = 0
+
+    #最大ハマり回数の集計
+    if saidaiHamari > max_saidaihamari:
+        max_saidaihamari = saidaiHamari
+
 
 # パチンコシミュレーター処理回数
 for _ in range(1, (simulationDay + 1)):
@@ -212,14 +218,20 @@ for _ in range(1, (simulationDay + 1)):
     print("")
     print("======【", daily_count, "日の結果です 】======")
     print(daily_count, "日目の収支結果は", int(ichinichiShushi), "円")
-    print(daily_count, "日目の大当たり回数：　", atariKaisuSum, "回")
-    print(daily_count, "日目の総ST回数：　", kakuhenKaisuSum, "回")
-    print(daily_count, "日目の最大大当たり回数：　", saidaiAtariKaisu, "回")
-    print(daily_count, "日目の一日の最大ST回数：　", saidaiKakuhenKaisu, "回")
-    print(daily_count, "日目の一回での最大ST連チャン回数：　", saidaiRenchanKaisu, "回")
+    print(daily_count, "日目の大当たり回数：　", atariKaisu, "回")
+    print(daily_count, "日目の総確変回数：　", kakuhenKaisu, "回")
     print(daily_count, "日目の最大ハマり回数：　", saidaiHamari, "回")
     print("==============================")
     print("")
+    ##出玉リセット(ハマり回数・確変突入回数・確変突入しなかった回数・初当たり回数・外れ回数・当たり回数・確変回数)
+    hamariKaisu = 0
+    kakuhenTotsunyuKaisu = 0
+    kakuhenNGKaisu = 0
+    hatsuatariKakuritsu = 0
+    hazureKaisu = 0
+    atariKaisu = 0
+    kakuhenKaisu = 0
+    saidaiHamari = 0
 
 
 #= == == データ収集結果出力 == == = //
@@ -251,6 +263,6 @@ print(simulationDay, "日の中での一日の最大確変回数：　", saidaiK
 # 最大連チャン回数
 print(simulationDay, "日の中での一回での最大連チャン回数：　", saidaiRenchanKaisu, "回")
 # 最大ハマり回数
-print(simulationDay, "日の中での最大ハマり回数：　", saidaiHamari, "回")
+print(simulationDay, "日の中での最大ハマり回数：　", max_saidaihamari, "回")
 
 
