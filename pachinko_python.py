@@ -132,6 +132,7 @@ saidaiMakegaku: int = 0
 goukeiShushi: int = 0
 heikinShushi: int = 0
 ichinichiShushi: int = 0
+daily_count: int = 0
 
 #日数分の収支データ(出玉計測 / 日 + 最大データ算出 + その日の当たり・確変回数のリセット)
 def pachinkoDailySimulation():
@@ -205,8 +206,21 @@ def pachinkoDailySimulation():
     kakuhenKaisu = 0
 
 # パチンコシミュレーター処理回数
-for _ in range(1, simulationDay):
+for _ in range(1, (simulationDay + 1)):
     pachinkoDailySimulation()
+    daily_count += 1
+    print("")
+    print("======【", daily_count, "日の結果です 】======")
+    print(daily_count, "日目の収支結果は", int(ichinichiShushi), "円")
+    print(daily_count, "日目の大当たり回数：　", atariKaisuSum, "回")
+    print(daily_count, "日目の総ST回数：　", kakuhenKaisuSum, "回")
+    print(daily_count, "日目の最大大当たり回数：　", saidaiAtariKaisu, "回")
+    print(daily_count, "日目の一日の最大ST回数：　", saidaiKakuhenKaisu, "回")
+    print(daily_count, "日目の一回での最大ST連チャン回数：　", saidaiRenchanKaisu, "回")
+    print(daily_count, "日目の最大ハマり回数：　", saidaiHamari, "回")
+    print("==============================")
+    print("")
+
 
 #= == == データ収集結果出力 == == = //
 print("")
