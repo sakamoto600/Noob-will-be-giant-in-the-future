@@ -9,8 +9,8 @@
 
 ## コード説明
 中身としては2つの機能(関数)があり、
-1.抽選一回転分(pachinko1kaitenSimulation)
-2.回転数分抽選(pachinkoDailySimulation)
+ - 1.抽選一回転分(pachinko1kaitenSimulation)
+ - 2.回転数分抽選(pachinkoDailySimulation)
 となり、それら2つを掛け合わせてシミュレーションしております。
 
 基本的なアルゴリズムは出来てある為、台の入力データ（下記参照部分）のみを変更すれば、それっぽい収支結果が算出されます。
