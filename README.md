@@ -19,20 +19,20 @@
 
 ## 台入力データ
  - 大当たり確率（確率の分母を入力）
- - atariKakuritsu: int = 
+   atariKakuritsu: int = 
  - ST中大当たり確率（確率の分母を入力）
- - STatariKakuritsu: int = 
+   STatariKakuritsu: int = 
  - ST突入率（％を入力 etc: 80）
- - STtotsunyuritsu: int = 
+   STtotsunyuritsu: int = 
  - ST回数（STの最大回数を入力）
- - STkaisu: int = 
+   STkaisu: int = 
  - 時短回数（時短の最大回数を入力）
- - jitanKaisu: int = 
+   jitanKaisu: int = 
  - 総回転数（一日に回す回数を入力 ※これはST中の回数や時短回数も含まれます、おおよそ一日打っても2000～3000回転な気がします）
- - kaitensuuSum: int = 
+   kaitensuuSum: int = 
  - 1000円辺りの回転率（これはその名の通り、釘調整が甘い台や辛い台をシミュレーション出来ます。これによって期待値収支も大きく変わりますｗ）
- - senenKaitensuu: int = 
+   senenKaitensuu: int = 
  - 大当たり一回辺りの出玉数（ST中も含めた大当たりを出した時の出玉数を入力）
- - ikaiOatariDedama: int = 
+   ikaiOatariDedama: int = 
  - 日数分のシミュレーション（シミュレーションする日数を入力します。これは総回転数と掛け合わせ、期待値収支に影響を及ぼします）
- - simulationDay: int = 
+   simulationDay: int = 
